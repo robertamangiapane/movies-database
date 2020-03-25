@@ -1,8 +1,8 @@
+- Initialize git repo and add .gitignore file
+
 - Setup project:
     `django-admin startproject app`
-    
-- Initialize git repo and add .gitignore file
-    
+        
 - Setup venv:
     `python3 -m venv venv`
     
