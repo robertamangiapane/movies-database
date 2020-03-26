@@ -23,3 +23,6 @@
     
 - Create the app(in the same dir of manage.py):
     `python manage.py startapp nameofapp`
+    
+- Run feature test:
+    `./manage.py test nameofapp.tests`
