@@ -83,8 +83,8 @@ DATABASES = {
         'HOST': '',
         'PORT': '',
         'TEST': {
-                    'NAME': 'my_movies_db_test',
-                },
+            'NAME': 'my_movies_db_test',
+        },
     }
 }
 

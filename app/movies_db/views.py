@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Movie
+from .movie_form import AddMovieForm
 
 
 def index(request):
@@ -10,7 +11,12 @@ def index(request):
 
 
 def add(request):
-    return HttpResponse("Add a movie to your database")
+    if request.method == "POST":
+        form = AddMovieForm(request.POST)
+        form.save()
+
+        # if form.is_valid():
+    return render(request, 'movies_db/add.html')
 
 
 def movie(request):

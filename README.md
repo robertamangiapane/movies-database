@@ -72,7 +72,7 @@
     `python manage.py runserver`
     
 - Run feature test:
-    `./manage.py test movies_db.tests`
+    `./manage.py test`
 
 -------
     

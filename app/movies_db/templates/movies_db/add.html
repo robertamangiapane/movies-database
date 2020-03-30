@@ -5,6 +5,31 @@
     <title>Title</title>
 </head>
 <body>
+Add a movie to your database:
+<form action="/add/movie" method="post">{% csrf_token %}
+    {{form.errors}}
+    <label for="title">title: </label>
+    <input id="title" type="text" name="title" value="" required="True">
 
+    <label for="link">link: </label>
+    <input id="link" type="text" name="link" value="">
+
+    <label for="subtitle">subtitle: </label>
+    <input id="subtitle" type="text" name="subtitle" value="">
+
+    <label for="watched">watched: </label>
+    <input id="watched" type="text" name="watched" value="">
+
+    <label for="date">date: </label>
+    <input id="date" type="text" name="date" value="">
+
+    <label for="review">review: </label>
+    <input id="review" type="text" name="review" value="">
+
+    <label for="other">other: </label>
+    <input id="other" type="text" name="other" value="">
+
+    <input type="submit" value="OK">
+</form>
 </body>
 </html>
