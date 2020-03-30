@@ -21,8 +21,12 @@
     `psql postgres`
     `CREATE DATABASE my_movies_db`
     
-- Setup standard migration inside app folder:
-    `python manage.py migrate movies_db`
+- Setup standard migrations inside app folder:
+    `python manage.py migrate`
+    
+- Setup project migrations (every time you change your model):
+    `python manage.py makemigrations movies_db`
+    `python manage.py migrate`
     
 - Create the app(in the same dir of manage.py):
     `python manage.py startapp movies_db`
@@ -55,8 +59,12 @@
     `psql postgres`
     `CREATE DATABASE my_movies_db`
     
-- Setup standard migration inside app folder:
-    `python manage.py migrate movies_db`
+- Setup standard migrations inside app folder:
+    `python manage.py migrate`
+    
+- Setup project migrations (every time you change your model):
+    `python manage.py makemigrations movies_db`
+    `python manage.py migrate`
 
 -------
     

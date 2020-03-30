@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Movie
 
 
 def index(request):
-    return HttpResponse("You're at the movies database home.")
+    movies = Movie.objects.all()
+    context = {'movies': movies}
+    return render(request, 'movies_db/index.html', context)
 
 
 def add(request):
