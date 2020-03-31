@@ -7,7 +7,6 @@
 <body>
 Add a movie to your database:
 <form action="/add/movie" method="post">{% csrf_token %}
-    {{form.errors}}
     <label for="title">title: </label>
     <input id="title" type="text" name="title" value="" required="True">
 

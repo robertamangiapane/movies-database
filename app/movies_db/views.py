@@ -1,3 +1,5 @@
+from django.contrib import messages
+from django.core.exceptions import ValidationError
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Movie
@@ -13,9 +15,12 @@ def index(request):
 def add(request):
     if request.method == "POST":
         form = AddMovieForm(request.POST)
-        form.save()
 
-        # if form.is_valid():
+        if form.is_valid():
+            form.save()
+        else:
+            raise ValidationError("Movie must have a title")
+
     return render(request, 'movies_db/add.html')
 
 

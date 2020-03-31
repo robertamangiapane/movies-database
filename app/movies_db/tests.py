@@ -1,8 +1,8 @@
-
+from django.core.exceptions import ValidationError
 from django.test import Client
 from django.test import TestCase
 from .models import Movie
-from .movie_form import AddMovieForm
+from django import forms
 
 
 class FeatureTestInfrastructure(TestCase):
@@ -20,24 +20,27 @@ class FeatureTestInfrastructure(TestCase):
         self.assertIn(movie2.title, response_text)
 
     def test_add_page_adds_movie(self):
-        add_movie = self.client.post('/add/', {'title': "Added Movie", 'link': "html", 'subtitle': "html", 'watched': "", "date": "", "review": "", "other": ""})
+        self.client.post('/add/', {'title': "Added Movie", 'link': "html", 'subtitle': "html", 'watched': "", "date": "", "review": "", "other": ""})
 
         response = self.client.get('/')
         response_text = response.content.decode("utf-8")
 
         self.assertIn("Added Movie", response_text)
 
-    # def test_cannot_add_page_adds_movie(self):
-    #     add_movie = self.client.post('/add', {'title': "Added Movie", 'link': "html", 'subtitle': "html", 'watched': "", "date": "",
-    #                           "review": "", "other": ""})
-    #
-    #     # form = AddMovieForm(data={'title': "Add Movie", 'link': "html", 'subtitle': "html", 'watched': "", "date": "",
-    #     #                        "review": "", "other": ""})
+    # def test_added_movie_redirect_to_home(self):
+    #     self.client.post('/add/', {'title': "Added Movie", 'link': "html", 'subtitle': "html", 'watched': "", "date": "", "review": "", "other": ""})
     #
     #     response = self.client.get('/')
     #     response_text = response.content.decode("utf-8")
     #
     #     self.assertIn("Added Movie", response_text)
+
+    def test_cannot_add_page_adds_movie(self):
+
+        with self.assertRaises(ValidationError):
+            self.client.post('/add/',
+                             {'title': "", 'link': "html", 'subtitle': "html", 'watched': "", "date": "", "review": "",
+                              "other": ""})
 
     def test_view_movies(self):
         response = self.client.get('/movie/')
