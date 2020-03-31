@@ -7,7 +7,11 @@
 <body>
 Here the list of movies:
 {% for movie in movies %}
-    {{movie.title}}
+    <ul>
+        <li>
+            {{movie.title}}
+        </li>
+    </ul>
 {% endfor %}
 </body>
 </html>

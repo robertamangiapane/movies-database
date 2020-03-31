@@ -1,6 +1,5 @@
-from django.contrib import messages
 from django.core.exceptions import ValidationError
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Movie
 from .movie_form import AddMovieForm
@@ -18,6 +17,7 @@ def add(request):
 
         if form.is_valid():
             form.save()
+            return redirect('/')
         else:
             raise ValidationError("Movie must have a title")
 

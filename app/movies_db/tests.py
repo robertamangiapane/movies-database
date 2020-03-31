@@ -27,13 +27,10 @@ class FeatureTestInfrastructure(TestCase):
 
         self.assertIn("Added Movie", response_text)
 
-    # def test_added_movie_redirect_to_home(self):
-    #     self.client.post('/add/', {'title': "Added Movie", 'link': "html", 'subtitle': "html", 'watched': "", "date": "", "review": "", "other": ""})
-    #
-    #     response = self.client.get('/')
-    #     response_text = response.content.decode("utf-8")
-    #
-    #     self.assertIn("Added Movie", response_text)
+    def test_added_movie_redirect_to_home(self):
+        response = self.client.post('/add/', {'title': "Added Movie", 'link': "html", 'subtitle': "html", 'watched': "", "date": "", "review": "", "other": ""})
+
+        self.assertRedirects(response, '/')
 
     def test_cannot_add_page_adds_movie(self):
 
