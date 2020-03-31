@@ -6,6 +6,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('add/', views.add, name='add'),
     path('add/movie', views.add, name='add_movie'),
-    path('movie/', views.movie, name='movie'),
+    path('movie/<str:id_movie>', views.movie_id, name='movie'),
     path('edit/', views.edit, name='edit')
 ]

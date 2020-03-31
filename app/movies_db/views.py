@@ -24,8 +24,12 @@ def add(request):
     return render(request, 'movies_db/add.html')
 
 
-def movie(request):
-    return HttpResponse("View a selected movie")
+def movie_id(request, id_movie):
+
+    movie = Movie.objects.get(id=id_movie)
+    context = {'movie': movie}
+
+    return render(request, 'movies_db/movie.html', context)
 
 
 def edit(request):

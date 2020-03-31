@@ -19,7 +19,7 @@ class FeatureTestInfrastructure(TestCase):
         self.assertIn(movie1.title, response_text)
         self.assertIn(movie2.title, response_text)
 
-    def test_add_page_adds_movie(self):
+    def test_user_add_movie(self):
         self.client.post('/add/', {'title': "Added Movie", 'link': "html", 'subtitle': "html", 'watched': "", "date": "", "review": "", "other": ""})
 
         response = self.client.get('/')
@@ -32,22 +32,25 @@ class FeatureTestInfrastructure(TestCase):
 
         self.assertRedirects(response, '/')
 
-    def test_cannot_add_page_adds_movie(self):
+    def test_user_cannot_movie(self):
 
         with self.assertRaises(ValidationError):
             self.client.post('/add/',
                              {'title': "", 'link': "html", 'subtitle': "html", 'watched': "", "date": "", "review": "",
                               "other": ""})
 
-    def test_view_movies(self):
-        response = self.client.get('/movie/')
+    def test_view_movie_page(self):
+        self.client.post('/add/', {'title': "First Movie", 'link': "html", 'subtitle': "html", 'watched': "", "date": "", "review": "", "other": ""})
+        movie = Movie.objects.get(title="First Movie")
+        movie_page = self.client.get('/movie/' + str(movie.id))
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"View a selected movie")
+        response_text = movie_page.content.decode("utf-8")
 
-    def test_edit_movies(self):
-        response = self.client.get('/edit/')
+        self.assertIn("First Movie", response_text)
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, b"Edit a selected movie")
+    # def test_edit_movies(self):
+    #     response = self.client.get('/edit/')
+    #
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertEqual(response.content, b"Edit a selected movie")
 
